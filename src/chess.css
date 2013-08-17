@@ -1,0 +1,237 @@
+body {
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+
+	text-align: left;
+
+	font-size: 12pt;
+	font-family: Arial, sans-serif;
+	color: black;
+
+	background: #303030 repeat fixed url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAFUlEQVQImWNgYGD4D8UMDEgMFIH/AGu7Bfvz8g82AAAAAElFTkSuQmCC");
+}
+
+h1 {
+	text-transform: lowercase;
+	text-shadow: 0 1px 0 white;
+	letter-spacing: 0.5ex;
+	font-weight: bold;
+	font-size: 100%;
+
+	background: white;
+	text-shadow: 0 0 5px black;
+
+	margin: 0;
+	padding: 14px;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+}
+
+#content {
+	background: white;
+	padding: 14px 40px;
+}
+
+#help {
+	cursor: help;
+}
+
+#dim {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 10;
+	display: none;
+	cursor: wait;
+}
+
+#chessboard {
+	width: 700px;
+	height: 700px;
+	float: left;
+	padding: 0;
+}
+
+#moves {
+	border: 1px solid silver;
+	border-radius: 14px;
+	width: 138px;
+	/* max-width: 168px; */
+	padding: 5px;
+	padding-left: 15px;
+	float: right;
+	overflow: auto;
+	height: 688px;
+}
+
+#moves button {
+	width: 100%;
+}
+
+#clear {
+	clear: both;
+	width: 0;
+	height: 0;
+}
+
+#footer {
+	background: white;
+	margin: 0;
+	padding: 14px;
+	border-bottom-left-radius: 14px;
+	border-bottom-right-radius: 14px;
+}
+
+#chessboard table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	border: none;
+	cursor: default;
+
+	/* see http://goo.gl/1dTy7 (css rule to disable text selection highlighting) */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#chessboard table tr th, #chessboard table tr td {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#chessboard table tr th {
+	background: silver;
+	font-size: small;
+	font-weight: normal;
+}
+
+#chessboard table tr th.file {
+	width: 80px;
+	height: 30px;
+}
+
+#chessboard table tr th.rank {
+	width: 30px;
+	height: 80px;
+}
+
+#chessboard table tr:first-child th:first-child {
+	border-top-left-radius: 14px;
+}
+
+#chessboard table tr:first-child th:last-child {
+	border-top-right-radius: 14px;
+}
+
+#chessboard table tr:last-child th:first-child {
+	border-bottom-left-radius: 14px;
+}
+
+#chessboard table tr:last-child th:last-child {
+	border-bottom-right-radius: 14px;
+}
+
+#chessboard table tr td {
+	width: 80px;
+	height: 80px;
+}
+
+#chessboard table tr td.light {
+	text-shadow: 0 0 10px black;
+	background: #E0E0E0;
+	background: -moz-linear-gradient(-45deg, #ffffff 0%, #c0c0c0 100%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #c0c0c0));
+	background: -webkit-linear-gradient(-45deg, #ffffff 0%, #c0c0c0 100%);
+	background: -o-linear-gradient(-45deg, #ffffff 0%, #c0c0c0 100%);
+	background: -ms-linear-gradient(-45deg, #ffffff 0%, #c0c0c0 100%);
+	background: linear-gradient(135deg, white, silver);
+
+}
+
+#chessboard table tr td.dark {
+	text-shadow: 0 0 10px white;
+	background: #404040;
+	background: -moz-linear-gradient(-45deg, #808080 0%, #000000 100%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #808080), color-stop(100%, #000000));
+	background: -webkit-linear-gradient(-45deg, #808080 0%, #000000 100%);
+	background: -o-linear-gradient(-45deg, #808080 0%, #000000 100%);
+	background: -ms-linear-gradient(-45deg, #808080 0%, #000000 100%);
+	background: linear-gradient(135deg, gray, black);
+}
+
+#chessboard table tr td div {
+	font-size: 50px;
+}
+
+#chessboard table tr td.white {
+	color: white;
+}
+
+#chessboard table tr td.black {
+	color: black;
+}
+
+#chessboard table tr td.from {
+	font-weight: bold;
+}
+
+#chessboard table tr td.to {
+	box-shadow: inset 0 0 10px 1px green;
+}
+
+#chessboard table tr td.to.capture {
+	box-shadow: inset 0 0 10px 1px red;
+}
+
+#chessboard table tr td.to.en-passant:after {
+	color: red;
+	content: "e.p.";
+}
+
+#chessboard table tr td.to.king-castle:after {
+	color: magenta;
+	content: "0-0";
+}
+
+#chessboard table tr td.to.queen-castle:after {
+	color: magenta;
+	content: "0-0-0";
+}
+
+#chessboard table tr td.to.positional:after, #chessboard table tr td.to.double-push:after {
+	color: gray;
+	content: "\2022";
+}
+
+#chessboard table tr td.turn {
+	cursor: move;
+}
+
+#chessboard table tr td div.turn:not(.can-move) {
+	cursor: not-allowed;
+}
+
+#chessboard table tr td.last-move {
+	box-shadow: inset 0 0 10px 1px yellow;
+}
+
+#moves a {
+	color: gray;
+	font-size: 8pt;
+	text-decoration: none;
+}
+
+#moves a.cannot {
+	color: silver;
+	pointer-events: none;
+	cursor: default;
+}
