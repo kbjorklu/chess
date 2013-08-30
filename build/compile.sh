@@ -10,7 +10,7 @@ java -jar "$COMPILER_JAR" \
 	--warning_level VERBOSE \
 	--js_output_file ../chess.min.js \
 	--process_jquery_primitives \
-	--externs extern-jquery-1.8.js \
+	--externs extern-jquery-1.9.js \
 	--externs extern-jquery-ui.js \
 	$src \
 	--js export.js

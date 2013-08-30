@@ -15,7 +15,7 @@
  */
 
 /**
- * @fileoverview Externs for jQuery 1.8.2
+ * @fileoverview Externs for jQuery 1.9.1
  *
  * Note that some functions use different return types depending on the number
  * of parameters passed in. In these cases, you may need to annotate the type
@@ -64,6 +64,13 @@ function $(arg1, arg2) {}
  * @nosideeffects
  */
 jQuery.prototype.add = function(arg1, context) {};
+
+/**
+ * @param {(jQuerySelector|Array.<Element>|string|jQuery)} arg1
+ * @return {!jQuery}
+ * @nosideeffects
+ */
+jQuery.prototype.addBack = function(arg1) {};
 
 /**
  * @param {(string|function(number,String))} arg1
@@ -239,6 +246,7 @@ jQuery.prototype.ajaxStop = function(handler) {};
 jQuery.prototype.ajaxSuccess = function(handler) {};
 
 /**
+ * @deprecated Please use .addBack(selector) instead.
  * @return {!jQuery}
  * @nosideeffects
  */
@@ -268,7 +276,7 @@ jQuery.prototype.appendTo = function(target) {};
 
 /**
  * @param {(string|Object.<string,*>)} arg1
- * @param {(string|number|function(number,string))=} arg2
+ * @param {(string|number|boolean|function(number,string))=} arg2
  * @return {(string|!jQuery)}
  */
 jQuery.prototype.attr = function(arg1, arg2) {};
@@ -300,80 +308,6 @@ jQuery.boxModel;
 
 /** @type {boolean} */
 $.boxModel;
-
-/** @type {Object.<string,*>} */
-jQuery.browser;
-
-/** @type {Object.<string,*>} */
-$.browser;
-
-/**
- * @type {boolean}
- * @const
- */
-jQuery.browser.mozilla;
-
-/**
- * @type {boolean}
- * @const
- */
-$.browser.mozilla;
-
-/**
- * @type {boolean}
- * @const
- */
-jQuery.browser.msie;
-
-/**
- * @type {boolean}
- * @const
- */
-$.browser.msie;
-
-/**
- * @type {boolean}
- * @const
- */
-jQuery.browser.opera;
-
-/**
- * @type {boolean}
- * @const
- */
-$.browser.opera;
-
-/**
- * @deprecated
- * @type {boolean}
- * @const
- */
-jQuery.browser.safari;
-
-/**
- * @deprecated
- * @type {boolean}
- * @const
- */
-$.browser.safari;
-
-/** @type {string} */
-jQuery.browser.version;
-
-/** @type {string} */
-$.browser.version;
-
-/**
- * @type {boolean}
- * @const
- */
-jQuery.browser.webkit;
-
-/**
- * @type {boolean}
- * @const
- */
-$.browser.webkit;
 
 /**
  * @constructor
@@ -700,14 +634,6 @@ $.dequeue = function(elem, queueName) {};
  * @return {!jQuery}
  */
 jQuery.prototype.detach = function(selector) {};
-
-/**
- * @deprecated
- * @param {(string|Object.<string,*>)=} arg1
- * @param {string=} handler
- * @return {!jQuery}
- */
-jQuery.prototype.die = function(arg1, handler) {};
 
 /**
  * @param {Object} collection
@@ -1321,6 +1247,7 @@ jQuery.jqXHR.prototype.fail = function(failCallbacks) {};
 jQuery.jqXHR.prototype.onreadystatechange = function (callback) {};
 
 /**
+ * @override
  * @param {function()=} doneFilter
  * @param {function()=} failFilter
  * @param {function()=} progressFilter
@@ -1372,15 +1299,6 @@ jQuery.prototype.last = function() {};
 
 /** @type {number} */
 jQuery.prototype.length;
-
-/**
- * @deprecated
- * @param {(string|Object)} arg1
- * @param {(function(!jQuery.event=)|Object)=} arg2
- * @param {function(!jQuery.event=)=} handler
- * @return {!jQuery}
- */
-jQuery.prototype.live = function(arg1, arg2, handler) {};
 
 /**
  * @deprecated
@@ -1640,6 +1558,22 @@ jQuery.prototype.parents = function(selector) {};
 jQuery.prototype.parentsUntil = function(arg1, filter) {};
 
 /**
+ * @param {string} data
+ * @param {Element=} context
+ * @param {boolean=} keepScripts
+ * @return {Array.<Element>}
+ */
+jQuery.parseHTML = function(data, context, keepScripts) {};
+
+/**
+ * @param {string} data
+ * @param {Element=} context
+ * @param {boolean=} keepScripts
+ * @return {Array.<Element>}
+ */
+$.parseHTML = function(data, context, keepScripts) {};
+
+/**
  * @param {string} json
  * @return {Object.<string, *>}
  */
@@ -1779,7 +1713,7 @@ jQuery.Promise.prototype.then =
 /**
  * @param {(string|Object.<string,*>)} arg1
  * @param {(string|number|boolean|function(number,String))=} arg2
- * @return {(string|!jQuery)}
+ * @return {(string|boolean|!jQuery)}
  */
 jQuery.prototype.prop = function(arg1, arg2) {};
 
@@ -1963,28 +1897,31 @@ jQuery.prototype.size = function() {};
 jQuery.prototype.slice = function(start, end) {};
 
 /**
- * @param {(string|number|function())=} duration
- * @param {(function()|string)=} arg2
- * @param {function()=} callback
+ * @param {(Object.<string,*>|string|number)=} optionsOrDuration
+ * @param {(function()|string)=} completeOrEasing
+ * @param {function()=} complete
  * @return {!jQuery}
  */
-jQuery.prototype.slideDown = function(duration, arg2, callback) {};
+jQuery.prototype.slideDown =
+    function(optionsOrDuration, completeOrEasing, complete) {};
 
 /**
- * @param {(string|number|function())=} duration
- * @param {(function()|string)=} arg2
- * @param {function()=} callback
+ * @param {(Object.<string,*>|string|number)=} optionsOrDuration
+ * @param {(function()|string)=} completeOrEasing
+ * @param {function()=} complete
  * @return {!jQuery}
  */
-jQuery.prototype.slideToggle = function(duration, arg2, callback) {};
+jQuery.prototype.slideToggle =
+    function(optionsOrDuration, completeOrEasing, complete) {};
 
 /**
- * @param {(string|number|function())=} duration
- * @param {(function()|string)=} arg2
- * @param {function()=} callback
+ * @param {(Object.<string,*>|string|number)=} optionsOrDuration
+ * @param {(function()|string)=} completeOrEasing
+ * @param {function()=} complete
  * @return {!jQuery}
  */
-jQuery.prototype.slideUp = function(duration, arg2, callback) {};
+jQuery.prototype.slideUp =
+    function(optionsOrDuration, completeOrEasing, complete) {};
 
 /**
  * @param {(boolean|string)=} arg1
@@ -1993,20 +1930,6 @@ jQuery.prototype.slideUp = function(duration, arg2, callback) {};
  * @return {!jQuery}
  */
 jQuery.prototype.stop = function(arg1, arg2, jumpToEnd) {};
-
-/**
- * @deprecated
- * @return {!jQuery}
- * @nosideeffects
- */
-jQuery.sub = function() {};
-
-/**
- * @deprecated
- * @return {!jQuery}
- * @nosideeffects
- */
-$.sub = function() {};
 
 /**
  * @param {(function(!jQuery.event=)|Object.<string, *>)=} arg1
@@ -2032,6 +1955,12 @@ jQuery.support.changeBubbles;
 
 /** @type {boolean} */
 $.support.changeBubbles;
+
+/** @type {boolean} */
+jQuery.support.cors;
+
+/** @type {boolean} */
+$.support.cors;
 
 /** @type {boolean} */
 jQuery.support.cssFloat;
@@ -2112,10 +2041,11 @@ jQuery.prototype.text = function(arg1) {};
 jQuery.prototype.toArray = function() {};
 
 /**
- * @deprecated
- * @param {(function(!jQuery.event=)|string|number|function()|boolean)=} arg1
- * @param {(function(!jQuery.event=)|function()|string)=} arg2
- * @param {(function(!jQuery.event=)|function())=} arg3
+ * Refers to the method from the Effects category. There used to be a toggle
+ * method on the Events category which was removed starting version 1.9.
+ * @param {(number|string|Object.<string,*>|boolean)=} arg1
+ * @param {(function()|string)=} arg2
+ * @param {function()=} arg3
  * @return {!jQuery}
  */
 jQuery.prototype.toggle = function(arg1, arg2, arg3) {};
