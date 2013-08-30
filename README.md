@@ -52,7 +52,7 @@ To run the tests, open `test.html` in the `src` directory.
 
 # License
 
-The Chess implementation is distributed under the MIT license. See accompanying file LICENSE for details.
+The Chess implementation is distributed under the [MIT](https://github.com/kbjorklu/chess/blob/master/LICENSE) license. See accompanying LICENSE file for details.
 
 Third-party components are distributed/used under their respective license:
 
