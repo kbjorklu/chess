@@ -10,7 +10,7 @@ Source files are placed in the `src` directory. Minification and linting files a
 
 * `chess.js`: Constants, utilities and the Chess namespace.
 * `bitboard.js`: 64-bit bit twiddling tools.
-* `zobrist.js`: Game state hash calculator. Currently unused, but will be used in the transposition table implementation.
+* `zobrist.js`: Game state hash calculator. Currently only used for the threefold repetition rule, but will be used in the transposition table implementation.
 * `move.js`: Piece movement representation.
 * `position.js`: Chess game state and mutation.
 * `parser.js`: Parser for various Chess notations.
