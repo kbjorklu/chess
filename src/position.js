@@ -72,7 +72,11 @@ Chess.Position = function() {
 	this.fillPiecesFromBitboards();
 	this.updateHashKey();
 
-	// TODO: repetition rule data: array or hash of Zobrist keys
+	/**
+	 * @type {!Array.<!Chess.Zobrist>}
+	 */
+	 this.hashHistory = [];
+
 	// TODO: checking pieces?
 	// TODO: separate occupied squares bitboard?
 	// TODO: store kings as indices instead of bitboards?
@@ -450,8 +454,16 @@ Chess.Position.prototype.isFiftyMoveRuleDraw = function() {
 
 /** @return {boolean} */
 Chess.Position.prototype.isThreefoldRepetitionRuleDraw = function() {
-	// TODO: implement e.g. by using hash history
-	return false;
+	var currentHashKey = this.hashKey;
+	return this.hashHistory.reduce(
+		/**
+		 * @param {number} previousValue
+		 * @param {!Chess.Zobrist} currentValue
+		 * @param {number} index (unused; please the Closure Compiler)
+		 * @param {Array} array (unused; please the Closure Compiler)
+		 * @return {number}
+		 */
+		function(previousValue, currentValue, index, array) { return previousValue + (currentValue.isEqual(currentHashKey) ? 1 : 0); }, 0) >= 3;
 };
 
 /**
@@ -792,10 +804,12 @@ Chess.Position.prototype.isMoveLegal = function(move) {
  * @return {boolean} true if the move was made
  */
 Chess.Position.prototype.makeMove = function(move) {
+	this.hashHistory.push(this.hashKey.dup());
 	this.updatePieces(move);
 
 	if (this.isKingInCheck()) {
 		this.revertPieces(move);
+		this.hashHistory.pop();
 		return false;
 	}
 
@@ -892,6 +906,7 @@ Chess.Position.prototype.unmakeMove = function() {
 	this.hashKey.updateEnPassantSquare(this.enPassantSquare);
 	this.enPassantSquare = /** @type {number} */(this.irreversibleHistory.pop());
 	this.hashKey.updateEnPassantSquare(this.enPassantSquare);
+	this.hashHistory.pop();
 
 	return move;
 };
