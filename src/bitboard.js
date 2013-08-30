@@ -25,7 +25,7 @@ Chess.Bitboard = function(low, high) {
 
 /**
  * @see http://goo.gl/pyzBq (Bit Twiddling Hacks)
- * @see http://goo.gl/dnqDn (Bit-peeking bits of Javascript)
+ * @see http://goo.gl/dnqDn (Bit-peeking bits of JavaScript)
  * @param {number} v 32 bit integer
  * @return {number} 0-32 number of bits set in v
  */

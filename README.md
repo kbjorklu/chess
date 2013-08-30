@@ -1,6 +1,6 @@
-# Javascript Chess
+# JavaScript Chess
 
-This program is a Javascript implementation of the board game [Chess](http://en.wikipedia.org/wiki/Chess), with a computer player opponent. All move types are supported, including en passant, castling and promotion.
+This program is a JavaScript implementation of the board game [Chess](http://en.wikipedia.org/wiki/Chess), with a computer player opponent. All move types are supported, including en passant, castling and promotion.
 
 Try it out [here](http://www.iki.fi/kbjorklu/chess/). Usage is shown below the chessboard. At least Internet Explorer (8 or later), Chrome and Firefox should work.
 
