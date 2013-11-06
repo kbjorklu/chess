@@ -66,7 +66,7 @@ Chess.Move.prototype.isCapture = function() {
 /**
  * @return {!Chess.Piece}
  */
-Chess.Move.prototype.getCapturedPiece = function(piece) {
+Chess.Move.prototype.getCapturedPiece = function() {
 	return /** @type {!Chess.Piece} */ ((this.value >>> 19) & 0x7);
 };
 
