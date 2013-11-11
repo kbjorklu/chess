@@ -284,14 +284,6 @@ Chess.UI.prototype.doComputerMove = function() {
  * Updates the chessboard according to the current chess position
  */
 Chess.UI.prototype.updateChessPosition = function() {
-	window.console.log("Moves: " + this.chessPosition.getMadeMoveCount() +
-		", white material: " + Chess.AI.getMaterialValue(this.chessPosition, Chess.PieceColor.WHITE) +
-		", black material: " + Chess.AI.getMaterialValue(this.chessPosition, Chess.PieceColor.BLACK) +
-		", white mobility: " + Chess.AI.getMobilityValue(this.chessPosition, Chess.PieceColor.WHITE) +
-		", black mobility: " + Chess.AI.getMobilityValue(this.chessPosition, Chess.PieceColor.BLACK) +
-		", white location: " + Chess.AI.getPieceSquareValue(this.chessPosition, Chess.PieceColor.WHITE) +
-		", black location: " + Chess.AI.getPieceSquareValue(this.chessPosition, Chess.PieceColor.BLACK));
-
 	Chess.UI.clearMoving();
 	Chess.UI.clearDragging();
 	this.updatePieces();

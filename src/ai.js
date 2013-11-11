@@ -395,6 +395,5 @@ Chess.AI.prototype.search = function(chessPosition) {
 		}
 	}
 
-	window.console.log("Evaluations: " + evaluations + ", result move: " + bestMove.getString() + ", alpha: " + alpha + ", beta: " + beta);
 	return bestMove;
 };
