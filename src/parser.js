@@ -44,7 +44,7 @@ Chess.Parser.parseOneMove = function(chessPosition, text) {
 		return legalMoves.filter(/** @param {!Chess.Move} move */function(move) { return move.getKind() === kind; });
 	}
 
-	var move = text.match(/([NBRQK])?([a-h])?([1-8])?([x:])?([a-h])([1-8])?(?:[=(]([NBRQ]))?/i);
+	var move = text.match(/([NBRQK])?([a-h])?([1-8])?-?([x:])?([a-h])([1-8])?(?:[=(]([NBRQ]))?/i);
 	if (move) {
 		var piece = move[1];
 		var fromFile = move[2];
