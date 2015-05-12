@@ -1,0 +1,9 @@
+CACHE MANIFEST
+CACHE:
+chess.html
+chess.css
+chess.ico
+chess.min.js
+
+NETWORK:
+*

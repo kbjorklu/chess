@@ -17,4 +17,4 @@ java -jar "$COMPILER_JAR" \
 cp ../src/chess.css ..
 cp ../src/chess.ico ..
 sed "s/chess\.include\.js/chess.min.js/" ../src/chess.html > ../chess.html
-
+sed "s/chess\.include\.js/chess.min.js/" ../src/chess.appcache > ../chess.appcache
