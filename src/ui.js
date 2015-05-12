@@ -145,6 +145,16 @@ Chess.UI.prototype.updatePieces = function() {
 	}
 };
 
+Chess.UI.prototype.makeMove = function(move) {
+	this.chessPosition.makeMove(move);
+	var state = "#" + this.chessPosition.getString().trim();
+	if (this.chessPosition.getTurnColor() === Chess.PieceColor.BLACK) {
+		window.history.pushState(null, move.getString(), state);
+	} else {
+		window.history.replaceState(null, move.getString(), state);
+	}
+};
+
 /**
  * Adds chessboard cell hover, and chess piece dragging and dropping capabilities to the chessboard
  */
@@ -213,7 +223,7 @@ Chess.UI.prototype.updateMoves = function() {
 
 					if (makeMoves.length > 0) {
 						// TODO: it's possible that there is more than one move (promotions). Either ask the user here or have a droplist somewhere ("promote to")
-						ui.chessPosition.makeMove(makeMoves[0]);
+						ui.makeMove(makeMoves[0]);
 						ui.updateChessPosition();
 					} else {
 						// Dropped to an invalid square
@@ -246,7 +256,7 @@ Chess.UI.prototype.updateMoves = function() {
 		} else if (id === "auto") {
 			ui.doComputerMove();
 		} else {
-			ui.chessPosition.makeMove(moves[parseInt(id, 10)]);
+			ui.makeMove(moves[parseInt(id, 10)]);
 			ui.updateChessPosition();
 		}
 	});
@@ -266,7 +276,7 @@ Chess.UI.prototype.doComputerMove = function() {
 			throw new Error("Move not found");
 		}
 
-		ui.chessPosition.makeMove(move);
+		ui.makeMove(move);
 		var from = $("#" + Chess.getAlgebraicFromIndex(move.getFrom()));
 		var to = $("#" + Chess.getAlgebraicFromIndex(move.getTo()));
 		var dx = (to.offset().left - from.offset().left);
@@ -303,11 +313,23 @@ Chess.UI.prototype.updateChessPosition = function() {
 	}
 };
 
+Chess.UI.prototype.loadState = function() {
+	var moves = window.location.href.split('#');
+	if (moves.length > 1) {
+		this.chessPosition = Chess.Parser.parseMoves(moves[1]);
+	} else {
+		this.chessPosition = new Chess.Position;
+	}
+	this.updateChessPosition();
+};
+
 /**
  * Creates a new chessboard and sets up the game at the standard chess initial position.
  */
 function makeChessGame() {
 	Chess.UI.makeBoard();
 	var ui = new Chess.UI;
+	ui.loadState();
 	ui.updateChessPosition();
+	window.onpopstate = ui.loadState.bind(ui);
 }
