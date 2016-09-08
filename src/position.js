@@ -910,9 +910,3 @@ Chess.Position.prototype.unmakeMove = function() {
 
 	return move;
 };
-
-Chess.Position.prototype.getString = function () {
-	return this.madeMoves.map(function(move) {
-		return move.getString().trim();
-	}).join(" ");
-};
