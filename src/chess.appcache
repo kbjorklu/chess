@@ -4,9 +4,6 @@ chess.html
 chess.css
 chess.ico
 chess.include.js
-https://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css
-https://code.jquery.com/jquery-1.9.0.min.js
-https://code.jquery.com/ui/1.10.0/jquery-ui.min.js
-https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js
-https://cdnjs.cloudflare.com/ajax/libs/augment.js/1.0.0/augment.min.js
-https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png
+
+NETWORK:
+*
