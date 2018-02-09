@@ -609,8 +609,6 @@ Chess.Position.prototype.generateMoves = function(onlyCaptures) {
 	}
 
 	// Positional and capture moves for knight, bishop, rook, queen, king
-	var turnBB = this.getColorBitboard(turnColor);
-
 	/**
 	 * @param {number} from 0-63
 	 * @param {!Chess.Bitboard} toMask
@@ -619,13 +617,14 @@ Chess.Position.prototype.generateMoves = function(onlyCaptures) {
 	function addNormalMoves(from, toMask, piece) {
 		while (!toMask.isEmpty()) {
 			var to = toMask.extractLowestBitPosition();
-			if (turnBB.isClear(to)) {
-				moves.push(new Chess.Move(from, to, opponentBB.isSet(to) ? Chess.Move.Kind.CAPTURE : Chess.Move.Kind.POSITIONAL, piece, chessPosition.getPieceAtOrNull(to)));
-			}
+			moves.push(new Chess.Move(from, to, opponentBB.isSet(to) ? Chess.Move.Kind.CAPTURE : Chess.Move.Kind.POSITIONAL, piece, chessPosition.getPieceAtOrNull(to)));
 		}
 	}
 
-	var mask = onlyCaptures ? opponentBB : Chess.Bitboard.ONE;
+	var mask = this.getColorBitboard(turnColor).dup().not();
+	if (onlyCaptures) {
+		mask.and(opponentBB);
+	}
 
 	var turnKnights = this.getPieceColorBitboard(Chess.Piece.KNIGHT, turnColor).dup();
 	while (!turnKnights.isEmpty()) {
